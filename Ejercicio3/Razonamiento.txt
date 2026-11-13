@@ -1,0 +1,45 @@
+Ejercicio 3 - Control academico
+Entradas
+codigo (string), nombre (string), 3 notas (double), asistencia (double %).
+Salidas
+definitiva, estado, promedio general, mejor y peor promedio.
+Restricciones
+maximo 25 estudiantes; notas en [0,5]; asistencia en [0,100];
+no dividir por cero cuando n == 0.
+Casos borde
+registrar sin cupo, nota fuera de rango, promedio sin estudiantes,
+mejor/peor sin estudiantes.
+Supuestos
+Definitiva = promedio aritmetico de las 3 notas.
+Estado: >=4.0 Aprobado; 3.0-3.99 Habilita; <3.0 Reprueba.
+Modularizacion
+Nombre	Tipo	Responsabilidad
+MenuAcademico	Procedimiento	submenu y arreglos locales
+RegistrarEstudiante	Procedimiento	valida y guarda
+CalcularDefinitiva	Funcion double	promedio de fila
+DeterminarEstado	Funcion int	1/2/3
+MostrarEstudiantes	Procedimiento	imprime def y estado
+PromedioGeneral	Funcion double	suma defs / n (0 si n==0)
+MejorPromedio	Funcion int	indice o -1
+PeorPromedio	Funcion int	indice o -1
+Pruebas de escritorio
+Flujo exitoso
+Paso	Accion	Resultado
+1	Registrar (E1, Ana, 4.0, 4.5, 3.5, 90)	Registrado
+2	Mostrar estudiantes	Def 4.0, Aprobado
+3	Promedio general	4.0
+4	Mejor y peor	Ana en ambos
+Flujo con error
+Paso	Accion	Resultado
+1	Registrar E2 con nota 6.0	"Las notas deben estar entre 0 y 5"
+2	Registrar E2 con asistencia 150	"La asistencia debe estar entre 0 y 100"
+3	Promedio general con n = 0	"No hay estudiantes"
+Validaciones implementadas
+Cupo: se rechaza el registro cuando n >= 25.
+Codigo duplicado: busqueda lineal antes de guardar.
+Las 3 notas: entre 0 y 5.
+Asistencia: entre 0 y 100.
+Promedio general: el submenu avisa cuando n == 0, nunca divide
+por cero.
+Mejor y peor promedio: devuelven -1 cuando no hay estudiantes.
+La definitiva divide entre 3.0 fijo (las 3 notas parciales).

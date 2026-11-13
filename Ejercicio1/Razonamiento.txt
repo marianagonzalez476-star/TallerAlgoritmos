@@ -1,0 +1,39 @@
+Ejercicio 1 - IPS de turnos
+Entradas
+documento (string), nombre (string), edad (int), tipo (1-3), prioridad (1-5).
+Salidas
+listado, resultado de busqueda, conteo por tipo, paciente con mayor prioridad.
+Restricciones
+maximo 30 pacientes; edad > 0; tipo en [1,3]; prioridad en [1,5];
+documento unico.
+Casos borde
+registrar con cupo lleno, buscar documento inexistente, listar sin pacientes,
+mayor prioridad sin pacientes.
+Supuestos
+El documento es la clave unica del paciente.
+Modularizacion
+Nombre	Tipo	Responsabilidad
+MenuIps	Procedimiento	submenu y arreglos locales
+RegistrarPaciente	Procedimiento	valida y guarda
+MostrarPacientes	Procedimiento	imprime listado
+BuscarPaciente	Funcion int	indice o -1
+ContarPorTipo	Procedimiento	cuenta por tipo
+IndiceMayorPrioridad	Funcion int	indice o -1
+Pruebas de escritorio
+Flujo exitoso
+Paso	Accion	n	Resultado
+1	Registrar (111, Ana, 30, 1, 3)	1	Registrado
+2	Registrar (222, Luis, 45, 1, 5)	2	Registrado
+3	Mayor prioridad	2	Luis (prioridad 5)
+4	Contar por tipo	2	Urgencias: 2, Consulta: 0, Prioritaria: 0
+Flujo con error
+Paso	Accion	Resultado
+1	Registrar prioridad 7	"Prioridad invalida", n no cambia
+2	Registrar doc 111 dos veces	"El documento ya esta registrado"
+Validaciones implementadas
+Cupo: se rechaza el registro cuando n >= 30.
+Documento duplicado: busqueda lineal antes de guardar.
+Edad: entero y mayor que 0.
+Tipo: entre 1 y 3. Prioridad: entre 1 y 5.
+Listar, contar y mayor prioridad avisan cuando no hay pacientes.
+La busqueda devuelve -1 y el submenu informa si no encuentra.

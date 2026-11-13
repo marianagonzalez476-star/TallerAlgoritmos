@@ -1,0 +1,42 @@
+Ejercicio 2 - Cafeteria universitaria
+Entradas
+codigo (string), nombre (string), precio (double), cantidad (int),
+categoria (1-3).
+Salidas
+productos agotados, total vendido del dia.
+Restricciones
+maximo 20 productos; precio > 0; cantidad >= 0; venta <= stock;
+codigo unico.
+Casos borde
+vender codigo inexistente, vender cantidad <= 0, vender mas que el stock,
+consultar agotados sin productos.
+Supuestos
+"Actualizar inventario" = reabastecer un producto existente sumando stock.
+Modularizacion
+Nombre	Tipo	Responsabilidad
+MenuCafeteria	Procedimiento	submenu y arreglos locales
+RegistrarProducto	Procedimiento	valida y guarda
+BuscarProducto	Funcion int	indice o -1
+RealizarVenta	Procedimiento	valida stock y acumula total
+Reabastecer	Procedimiento	suma stock a producto existente
+MostrarAgotados	Procedimiento	lista stock 0
+Pruebas de escritorio
+Flujo exitoso
+Paso	Accion	Resultado
+1	Registrar (A01, Pan, 2000, 10, 2)	Registrado
+2	Vender A01 x 3	Venta 6000, stock 7, total 6000
+3	Mostrar agotados	"Ninguno"
+Flujo con error
+Paso	Accion	Resultado
+1	Vender A01 x 100	"Stock insuficiente. Disponible: 7"
+2	Vender ZZZ	"Producto no encontrado"
+3	Vender A01 x 0	"Cantidad invalida"
+Validaciones implementadas
+Cupo: se rechaza el registro cuando n >= 20.
+Codigo duplicado: busqueda lineal antes de guardar.
+Precio: mayor que 0. Cantidad inicial: 0 o mas.
+Venta: codigo debe existir; cantidad mayor que 0; cantidad
+no mayor que el stock disponible.
+Con stock 0 la venta se rechaza por stock insuficiente.
+Reabastecer exige codigo existente y cantidad mayor que 0.
+Agotados y ventas avisan cuando no hay productos registrados.
